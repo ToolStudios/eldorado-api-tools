@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0",
-        "prajnaavidya/url-utils": "4.*"
+        "prajnaavidya/url-utils": "dev-master"
     },
     "autoload": {
         "files": ["src/EldoradoAPI.php"]
