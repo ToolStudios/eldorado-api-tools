@@ -5,8 +5,8 @@
 class EldoradoAPI
 {
   // Eldorado account ID/API key
-  private $account_id;
-  private $api_key;
+  protected $account_id;
+  protected $api_key;
 
   // debug status - enable for verbose mode
   public $debug = false;
