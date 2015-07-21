@@ -51,7 +51,7 @@ $product2->Quantity = '2';
 // products must be in an array
 $products = [$product1, $product2];
 
-// shipping code -- see Eldorado API documentation for more information
+// shipping code (see API documentation for more information)
 $shipcode = 'M02';
 
 // place order
