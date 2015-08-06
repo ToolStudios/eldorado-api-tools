@@ -114,14 +114,18 @@ class EldoradoAPI
 
   // place order using $order_data (stdobject) for $products (array of stdobjects)
   // this function is LIVE - notify Eldorado before making test orders or they will be fulfilled!
-  // TODO
   public function placeOrder($order_data, $products, $ship_code='M02')
   {
-    // validate ship code
-
     // clean up zip code/phone number
     $zip_code = preg_replace("/[^0-9]/","",$order_data->ZipCode);
     $phone_number = preg_replace("/[^0-9]/","",$order_data->PhoneNumber);
+    
+    // check for special instructions
+    if (isset($order_data->SpecialInstructions)) {
+      $instructions = $order_data->SpecialInstructions;
+    } else {
+      $instructions = '';
+    }
 
     // format XML call
     $xmlcall =
@@ -139,7 +143,7 @@ class EldoradoAPI
       '<SourceCode>API</SourceCode>'.
       '<CustPONumber>'.$order_data->SourceOrderNumber.'</CustPONumber>'.
       '<ShipVia>'.strtoupper($ship_code).'</ShipVia>'.
-      '<SpecialInstructions>'.$order_data->SpecialInstructions.'</SpecialInstructions>'.
+      '<SpecialInstructions>'.$instructions.'</SpecialInstructions>'.
       '<SourceOrderNumber>'.$order_data->SourceOrderNumber.'</SourceOrderNumber>';
 
     // add products to XML
