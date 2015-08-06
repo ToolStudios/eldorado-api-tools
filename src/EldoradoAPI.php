@@ -126,6 +126,13 @@ class EldoradoAPI
     } else {
       $instructions = '';
     }
+    
+    // check for address line2
+    if (isset($order_data->AddressLine2)) {
+      $address2 = $order_data->AddressLine2;
+    } else {
+      $address2 = '';
+    }
 
     // format XML call
     $xmlcall =
@@ -133,7 +140,7 @@ class EldoradoAPI
       '<AccountId>'.$this->account_id.'</AccountId>'.
       '<Name>'.$order_data->Name.'</Name>'.
       '<AddressLine1>'.$order_data->AddressLine1.'</AddressLine1>'.
-      '<AddressLine2>'.$order_data->AddressLine2.'</AddressLine2>'.
+      '<AddressLine2>'.$address2.'</AddressLine2>'.
       '<City>'.$order_data->City.'</City>'.
       '<StateCode>'.$order_data->StateCode.'</StateCode>'.
       '<ZipCode>'.$zip_code.'</ZipCode>'.
