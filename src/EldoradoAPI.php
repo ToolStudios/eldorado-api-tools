@@ -119,19 +119,26 @@ class EldoradoAPI
     // clean up zip code/phone number
     $zip_code = preg_replace("/[^0-9]/","",$order_data->ZipCode);
     $phone_number = preg_replace("/[^0-9]/","",$order_data->PhoneNumber);
-    
+
     // check for special instructions
     if (isset($order_data->SpecialInstructions)) {
       $instructions = $order_data->SpecialInstructions;
     } else {
       $instructions = '';
     }
-    
+
     // check for address line2
     if (isset($order_data->AddressLine2)) {
       $address2 = $order_data->AddressLine2;
     } else {
       $address2 = '';
+    }
+
+    // check for signature required
+    if (isset($order_data->SignatureRequired) && strtolower($order_data->SignatureRequired == 'y')) {
+      $signature = '<signatureRequired>Y</signatureRequired>';
+    } else {
+      $signature = '';
     }
 
     // format XML call
@@ -151,6 +158,7 @@ class EldoradoAPI
       '<CustPONumber>'.$order_data->SourceOrderNumber.'</CustPONumber>'.
       '<ShipVia>'.strtoupper($ship_code).'</ShipVia>'.
       '<SpecialInstructions>'.$instructions.'</SpecialInstructions>'.
+      $signature .
       '<SourceOrderNumber>'.$order_data->SourceOrderNumber.'</SourceOrderNumber>';
 
     // add products to XML
