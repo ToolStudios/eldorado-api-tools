@@ -39,6 +39,7 @@ $order_data->CountryCode = 'US'; // required - country code (see API documentati
 $order_data->PhoneNumber = '3034445555'; // required - phone number (numbers only)
 $order_data->SourceOrderNumber = '123'; // required - unique order PO number (numbers only)
 $order_data->SpecialInstructions = ''; // optional - special instructions
+$order_data->SignatureRequired = 'Y'; // optional - set Y for adult signature required
 
 // order products
 $product1 = new stdClass;
