@@ -135,7 +135,7 @@ class EldoradoAPI
     }
 
     // check for signature required
-    if (isset($order_data->SignatureRequired) && strtolower($order_data->SignatureRequired == 'y')) {
+    if (isset($order_data->SignatureRequired) && strtolower($order_data->SignatureRequired) == 'y') {
       $signature = '<signatureRequired>Y</signatureRequired>';
     } else {
       $signature = '';
