@@ -5,14 +5,14 @@
 class EldoradoAPI
 {
   // Eldorado account ID/API key
-  protected $account_id;
-  protected $api_key;
+  private $account_id;
+  private $api_key;
 
   // debug status - enable for verbose mode
   public $debug = false;
 
   // API endpoints - must match method names
-  protected $endpoints = array(
+  private $endpoints = array(
     'getIP'=>'https://eldoradopartner.com/get_ip/',
     'quantityCheck'=>'https://eldoradopartner.com/quantitycheck/',
     'checkShipping'=>'https://eldoradopartner.com/shipping_updates/',
@@ -174,7 +174,7 @@ class EldoradoAPI
   }
 
   // make a curl post call with $xml to $url and then convert the result to an object
-  protected function etc_call($xml, $url)
+  private function etc_call($xml, $url)
   {
     // initialize curl
     if (!$ch = curl_init())
